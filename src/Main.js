@@ -1,4 +1,4 @@
-import React from 'ract';
+import React from 'react';
 
 class Main extends React.Component {
   constructor(props) {
