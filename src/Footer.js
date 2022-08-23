@@ -5,7 +5,7 @@ class Footer extends React.Component {
     return (
       <>
         <footer>
-          
+          Copyright &copy;{''} Alfredo Orquiz 2022
         </footer>
       </>
     )
