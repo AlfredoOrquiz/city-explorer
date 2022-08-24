@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import Footer from './Footer';
 import Header from './Header.js';
 import Main from './Main.js';
-import Footer from './Footer';
-import './App.css'
+import './App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,6 +27,7 @@ class App extends React.Component {
 
   handleCitySubmit = async (e) => {
     e.preventDefault();
+    let weatherData = await axios.get();
     try {
 
     
