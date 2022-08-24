@@ -32,3 +32,5 @@ I will be using HTML, CSS, JavaScript, Bootstrap, and React.
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
+Jordan Yamada helped me understand the code better, as well as understand what is being asked from the Trello Checklist. Tuesday 08/23/2022.
+David Suy helped me with the coding, and understanding where things should be placed, along side the "Why?".
