@@ -22,6 +22,10 @@ class Main extends React.Component {
             <Button type="submit" variant="primary">Explore!</Button>{' '}
           </Form.Group>
         </Form>
+        <Weather>
+          weatherData = {this.props.weatherData}
+          showForacast = {this.props.showForecast}
+        </Weather>
         {
           this.props.showCard
           ?
