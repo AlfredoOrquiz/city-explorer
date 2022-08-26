@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Weather from './Weather.js';
 
 
 class Main extends React.Component {  
@@ -19,13 +20,9 @@ class Main extends React.Component {
               placeholder='"Seattle", "San Francisco"'
               type='text'>
             </Form.Control>
-            <Button type="submit" variant="primary">Explore!</Button>{' '}
           </Form.Group>
+          <Button type='submit' variant='primary'>Explore!</Button>{' '}
         </Form>
-        <Weather>
-          weatherData = {this.props.weatherData}
-          showForacast = {this.props.showForecast}
-        </Weather>
         {
           this.props.showCard
           ?
@@ -35,16 +32,24 @@ class Main extends React.Component {
           ?
             <p>{this.props.errorMessage}</p>
           :
-          <Card>
+          <Card  bg='light' border='info' style={{ width: '50%'}} >
+            <Card.Header>City's Info</Card.Header>
             <Card.Body>
               <Card.Title>{this.props.cityData.display_name}</Card.Title>
-              <Card.Img variant="top" src={this.props.mapURL}/>
+              <Card.Img variant='top' src={this.props.mapURL}/>
               <Card.Text></Card.Text>
             </Card.Body>
             <ListGroup>
               <ListGroup.Item>'Lat: {this.props.cityData.lat}'</ListGroup.Item>
               <ListGroup.Item>'Lon: {this.props.cityData.lon}'</ListGroup.Item>
             </ListGroup>
+            <Weather
+              error = {this.props.error}
+              errorMessage = {this.props.errorMessage}
+              handleCitySubmit = {this.props.handleCitySubmit}
+              showForecast = {this.props.showForecast}
+              weatherData = {this.props.weatherData}
+            />
           </Card>
          }
       </>
