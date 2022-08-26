@@ -36,8 +36,7 @@ class Main extends React.Component {
             <Card.Header>City's Info</Card.Header>
             <Card.Body>
               <Card.Title>{this.props.cityData.display_name}</Card.Title>
-              <Card.Img variant='top' src={this.props.mapURL}/>
-              <Card.Text></Card.Text>
+              <Card.Img variant='top' src={this.props.map}/>
             </Card.Body>
             <ListGroup>
               <ListGroup.Item>'Lat: {this.props.cityData.lat}'</ListGroup.Item>

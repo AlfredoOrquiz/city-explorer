@@ -43,6 +43,10 @@ I will be using HTML, CSS, JavaScript, Bootstrap, and React.
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
+## Links
+Netlify (deployed site): https://alfredo-city-explorer.netlify.app
+Trello: https://trello.com/c/doyBY7v0/12-1-weather-live-as-a-user-of-city-explorer-i-want-to-see-weather-info-for-the-city-i-searched-so-that-i-know-how-to-pack-for-an-u
+
 ## Images
 
 ![](src/Images/City%20explorer%20API%20whiteboard.png)

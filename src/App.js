@@ -30,21 +30,23 @@ class App extends React.Component {
 
   handleCitySubmit = async (e) => {
     e.preventDefault();
-    this.helpMap();
-    await this.helpWeather()
+    let cityObj = await this.helpMap();
+    console.log(cityObj);
+    this.helpWeather(cityObj);
   };
-
+  
   helpMap = async () => {
-    try {
-    
+    try {    
       //This is the form that will catch the cityData object array
       let response = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`)
+      let  map_Url = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=12`;
       this.setState({
         cityData: response.data[0],
         error: false,
-        mapURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=12`,
+        map: map_Url,
         showCard: false,
       });
+      return response.data[0];
     }
     catch(error) {
       this.setState({
@@ -54,10 +56,10 @@ class App extends React.Component {
     }
   }
 
-  helpWeather = async () => {
+  helpWeather = async (input) => {
     try {
       // I am now creating a request to the Back End Server to the Front End Server (this current code).
-      let urlWeather = `${process.env.REACT_APP_SERVER}/weather?city_name=${this.state.city}&format=json`;
+      let urlWeather = `${process.env.REACT_APP_SERVER}/weather?lat=${input.lat}&lon=${input.lon}&format=json`;
       let weather = await axios.get(urlWeather);
       if(!weather) {
         weather = []
@@ -86,7 +88,7 @@ class App extends React.Component {
         errorMesage = {this.state.errorMesage}
         handleCity = {this.handleCity}
         handleCitySubmit = {this.handleCitySubmit}
-        mapURL = {this.state.mapURL}
+        map = {this.state.map}
         showCard = {this.state.showCard}
         weatherData = {this.state.weatherData}
         />
