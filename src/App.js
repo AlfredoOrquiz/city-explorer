@@ -3,7 +3,7 @@ import axios from 'axios';
 import Footer from './Footer';
 import Header from './Header.js';
 import Main from './Main.js';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class App extends React.Component {
     map: '',
     showCard: true,
     showForecast: true,
-    weatherData: {},
+    weatherData: [],
   };
   }
 
@@ -31,31 +31,26 @@ class App extends React.Component {
   handleCitySubmit = async (e) => {
     e.preventDefault();
     this.helpMap();
-    this.helpWeather()
+    await this.helpWeather()
   };
 
   helpMap = async () => {
     try {
-
     
-
-    //This is the form that will catch the cityData object array
-    let response = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`)
-    this.setState({
-      cityData: response.data[0],
-      error: false,
-      mapURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=12`,
-      showCard: false,
-      description: forecast.data,
-    });
+      //This is the form that will catch the cityData object array
+      let response = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`)
+      this.setState({
+        cityData: response.data[0],
+        error: false,
+        mapURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=12`,
+        showCard: false,
+      });
     }
     catch(error) {
       this.setState({
         error: true,
         errorMessage: `Oh oh! It seems like an error has occured: ${error.response.status}`,
       });
-      console.log(error);
-      console.log(error.response.status);
     }
   }
 
@@ -63,22 +58,20 @@ class App extends React.Component {
     try {
       // I am now creating a request to the Back End Server to the Front End Server (this current code).
       let urlWeather = `${process.env.REACT_APP_SERVER}/weather?city_name=${this.state.city}&format=json`;
-      console.log(urlWeather);
       let weather = await axios.get(urlWeather);
-      console.log(weather);
-
-      this.state({
+      if(!weather) {
+        weather = []
+      }
+      this.setState({
         error:false,
         showForecast:false,
-        weatherData: weather.data[0].
-      });
+        weatherData: weather.data
+    });
     } catch (error) {
       this.setState({
         error: true,
         errorMessge: `Huston, we have a problem: ${error.response.status}`,
       });
-      console.log(error);
-      console.log(error.response.status)
     }
   }
 
@@ -95,6 +88,7 @@ class App extends React.Component {
         handleCitySubmit = {this.handleCitySubmit}
         mapURL = {this.state.mapURL}
         showCard = {this.state.showCard}
+        weatherData = {this.state.weatherData}
         />
         <Footer/>
       </>

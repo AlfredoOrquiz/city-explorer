@@ -1,5 +1,12 @@
 body {
   background-color: antiquewhite;
+  margin: auto;
+  text-align: center;
+  width: 90%;
+}
+
+.card {
+  margin: auto;
 }
 
 .App {
