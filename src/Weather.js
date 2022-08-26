@@ -7,7 +7,6 @@ class Weather extends React.Component {
     {
       return
     }
-    console.log(this.props.weatherData);
     let weatherDataArr = this.props.weatherData.map((day, idx) => {
       return (
         <Card>
