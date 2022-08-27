@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Footer from './Footer';
-import Header from './Header.js';
 import Main from './Main.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,6 +13,7 @@ class App extends React.Component {
     error: false,
     errorMesage: '',
     map: '',
+    movieData: [],
     showCard: true,
     showForecast: true,
     weatherData: [],
@@ -31,15 +31,15 @@ class App extends React.Component {
   handleCitySubmit = async (e) => {
     e.preventDefault();
     let cityObj = await this.helpMap();
-    console.log(cityObj);
     this.helpWeather(cityObj);
+    this.helpMovies(this.state.city);
   };
   
   helpMap = async () => {
     try {    
       //This is the form that will catch the cityData object array
       let response = await axios.get(`https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`)
-      let  map_Url = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=12`;
+      let map_Url = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${response.data[0].lat},${response.data[0].lon}&zoom=12`;
       this.setState({
         cityData: response.data[0],
         error: false,
@@ -54,6 +54,29 @@ class App extends React.Component {
         errorMessage: `Oh oh! It seems like an error has occured: ${error.response.status}`,
       });
     }
+  }
+
+  helpMovies = async (input) => {
+    console.log('Im alive')
+    try {
+      let urlMovie = `${process.env.REACT_APP_SERVER}/movies?title=${input}`
+      let movies = await axios.get(urlMovie);
+      console.log(movies);
+      if(!movies) {
+        movies = []
+      }
+      this.setState({
+        error:false,
+        movieData: movies.data
+      })
+    } catch (error) {
+      console.log('Try was not alive. Lets try catch')
+      this.setState({
+        error: true,
+        errorMessage: `You are killing me smalls!`,
+      })
+    }
+    console.log('Try and Catch failed.')
   }
 
   helpWeather = async (input) => {
@@ -80,7 +103,6 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Header/>
         <Main
         city = {this.state.city}
         cityData = {this.state.cityData}
@@ -89,6 +111,7 @@ class App extends React.Component {
         handleCity = {this.handleCity}
         handleCitySubmit = {this.handleCitySubmit}
         map = {this.state.map}
+        movieData = {this.state.movieData}
         showCard = {this.state.showCard}
         weatherData = {this.state.weatherData}
         />

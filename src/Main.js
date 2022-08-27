@@ -3,11 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Movies from './Movies.js';
 import Weather from './Weather.js';
 
-
-class Main extends React.Component {  
-  
+class Main extends React.Component {
   render() {
     return (
       <>
@@ -48,6 +47,9 @@ class Main extends React.Component {
               handleCitySubmit = {this.props.handleCitySubmit}
               showForecast = {this.props.showForecast}
               weatherData = {this.props.weatherData}
+            />
+            <Movies
+              movieData = {this.props.movieData}
             />
           </Card>
          }

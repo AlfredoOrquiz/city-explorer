@@ -30,30 +30,65 @@ Finish time: 0000
 
 Actual time needed to complete: 10 hrs
 
+## Lab 08
+Name of feature: API's
+
+Estimate of time needed to complete: 8 - 12 hrs
+
+Start time: 1400
+
+Finish time: 0000
+
+Actual time needed to complete: 10 hrs
+
+## Lab 09
+Name of feature: Refactoring into Modules
+
+Estimate of time needed to complete: 8 - 12 hrs
+
+Start time: 1400
+
+Finish time: 0000
+
+Actual time needed to complete: 10 hrs
+
+## Lab 10
+Name of feature: Advanced Topics
+
+Estimate of time needed to complete: 8 - 12 hrs
+
+Start time: 1400
+
+Finish time: 0000
+
+Actual time needed to complete: 10 hrs
+
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
+
 ## Architecture
 <!-- Provide a detailed description of the application design.-->
 I will be using HTML, CSS, JavaScript, Bootstrap, and React.
+
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
+
 ## Links
 Netlify (deployed site): https://alfredo-city-explorer.netlify.app
 Trello: https://trello.com/c/doyBY7v0/12-1-weather-live-as-a-user-of-city-explorer-i-want-to-see-weather-info-for-the-city-i-searched-so-that-i-know-how-to-pack-for-an-u
 
-## Images
 
+## Images
 ![](src/Images/City%20explorer%20API%20whiteboard.png)
 ![](src/Images/City%20explorer%20whiteboard%20lab%2007.png)
 ![](c:/Users/Alcatraz/OneDrive/Pictures/Screenshots/City%20explorer%20API%20whiteboard.png)
-
-
+![](c:/Users/Alcatraz/OneDrive/Pictures/Screenshots/City%20explorer%20Lab%2010.png)
 
 
 ## Credit and Collaborations
